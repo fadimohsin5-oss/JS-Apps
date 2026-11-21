@@ -1,42 +1,65 @@
 window.onload = function () {
     var seconds = 0;
     var milliseconds = 0;
-    var appendmilliseconds = document.getElementById("milliseconds");
-    var appendseconds = document.getElementById("seconds");
-    var buttonstart = document.getElementById("button-start");
-    var buttonstop = document.getElementById("button-stop");
-    var buttonreset = document.getElementById("button-reset");
+
+
+    var appendMilliseconds = document.getElementById("milliseconds");
+    var appendSeconds = document.getElementById("seconds");
+
+
+    var buttonStart = document.getElementById("button-start");
+    var buttonStop = document.getElementById("button-stop");
+    var buttonReset = document.getElementById("button-reset");
+
+
     var Interval;
-    
-    buttonstart.onclick = function () {
+
+
+    buttonStart.onclick = function () {
         clearInterval(Interval);
-    }
-    buttonstop.onlick = function () {
+        Interval = setInterval(startTimer, 10);
+    };
+
+
+    buttonStop.onclick = function () {
         clearInterval(Interval);
-    }
-    buttonreset.onclick = function () {
+    };
+
+
+    buttonReset.onclick = function () {
         clearInterval(Interval);
+
+
         milliseconds = 0;
         seconds = 0;
-        appendmilliseconds.innerHTML = milliseconds;
-        appendseconds.innerHTML = seconds;
-    }
+
+
+        appendMilliseconds.innerHTML = "00";
+        appendSeconds.innerHTML = "00";
+    };
+
 
     function startTimer() {
         milliseconds++;
-        if (milliseconds <=9) {            
-        appendmilliseconds.innerHTML="0"+milliseconds;
+
+
+        if (milliseconds <= 9) {
+            appendMilliseconds.innerHTML = "0" + milliseconds;
+        } else {
+            appendMilliseconds.innerHTML = milliseconds;
         }
-        if (milliseconds > 9) {
-            appendmilliseconds.innerHTML = milliseconds;
-        }
-        if(milliseconds>99) {
+
+
+        if (milliseconds > 99) {
             seconds++;
-            appendseconds.innerHTML = seconds <= 9 ? "0" + seconds : seconds;
-            milliseconds=0;
-            appendmilliseconds.innerHTML="00";
-        } if (seconds > 9) {
-            appendmilliseconds.innerHTML = seconds;
+
+
+            appendSeconds.innerHTML =
+                seconds <= 9 ? "0" + seconds : seconds;
+
+
+            milliseconds = 0;
+            appendMilliseconds.innerHTML = "00";
         }
-    } 
-}
+    }
+};
